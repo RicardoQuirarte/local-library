@@ -6,12 +6,13 @@ const logger = require("morgan");
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
-const aboutRouter = require("./routes/about");
+//Import routes for "catalog" area of site
+const catalogRouter = require("./routes/catalog");
 
 const app = express();
 
 // set up mongoose connection
-const mongoose = required("mongoose");
+const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 const mongoDB =
   "mongodb+srv://admin:bef9jg8vmo@cluster0.hclqtf0.mongodb.net/local_library?retryWrites=true&w=majority&appName=Cluster0";
@@ -33,7 +34,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/hola", aboutRouter);
+app.use("/catalog", catalogRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
